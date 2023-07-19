@@ -18,6 +18,10 @@ app.component('product-display', {
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
             <p>Shipping: {{shipping}}</p>
+            <div>
+                <label for="quantity">quantity</label>
+                <input name="quantity" type="number" min="1" v-model.number="quantityInput">
+            </div>
             
             <!-- Code Challenge -->
             <product-details :details="details"></product-details>
@@ -48,6 +52,7 @@ app.component('product-display', {
             product: 'Sock',
             brand: 'Vue Mastery',
             onSale: true,
+            quantityInput: 1,
             selectedVariant: 0,
             details: ['50% cotton', '30% wool', '20% polyester'],
             variants: [
@@ -63,8 +68,9 @@ app.component('product-display', {
             console.log(index)
         },
         addToCart(){
-            this.variants[this.selectedVariant].quantity--
+            this.variants[this.selectedVariant].quantity -= this.quantityInput
             this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
+            
         },
         removeFromCart(){
             this.variants[this.selectedVariant].quantity++
@@ -82,7 +88,7 @@ app.component('product-display', {
             return this.variants[this.selectedVariant].image
         },
         inStock(){
-            return this.variants[this.selectedVariant].quantity
+            return this.quantityInput <= this.variants[this.selectedVariant].quantity
         },
         saleText(){
             return this.brand + ' ' + this.product + ' is on Sale'

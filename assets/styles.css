@@ -96,6 +96,16 @@ p {
   font-size: 22px;
 }
 
+.flex {
+  display: flex;
+}
+
+input[type=number] {
+  margin-left: 10px;
+  font-size: 18px;
+  width: 50px;
+}
+
 .product-display {
   display: flex;
   flex-direction: column;
