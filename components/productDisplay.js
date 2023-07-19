@@ -63,11 +63,11 @@ app.component('product-display', {
             console.log(index)
         },
         addToCart(){
-            this.variants[this.selectedVariant].quantity -= 1
+            this.variants[this.selectedVariant].quantity--
             this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
         },
         removeFromCart(){
-            this.variants[this.selectedVariant].quantity += 1
+            this.variants[this.selectedVariant].quantity++
             this.$emit('remove-from-cart', this.variants[this.selectedVariant].id)
         },
         addReview(review){
